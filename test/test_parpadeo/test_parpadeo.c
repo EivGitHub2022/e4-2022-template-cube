@@ -31,6 +31,7 @@ void setUp(void)
 {
     miPuerto = (GPIO_TypeDef){0};
 }
+void tearDown(void){}
 
 static void debeConfigurarPuertoLed(void)
 {

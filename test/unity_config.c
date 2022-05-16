@@ -1,4 +1,4 @@
-#include "unittest_transport.h"
+#include "unity_config.h"
 #include <stm32f1xx.h>
 #include <stm32f1xx_hal.h>
 #include <stm32f1xx_hal_gpio.h>
@@ -6,7 +6,7 @@
 
 static USART_HandleTypeDef husart1;
 
-void unittest_uart_begin(void)
+void unityOutputStart(void)
 {
     SystemCoreClockUpdate();
     __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -26,14 +26,14 @@ void unittest_uart_begin(void)
            .StopBits=USART_STOPBITS_1}};
     HAL_USART_Init(&husart1);
 }
-void unittest_uart_putchar(char c)
+void unityOutputChar(char c)
 {
-    HAL_USART_Transmit(&husart1,&c,1,1000);
+    HAL_USART_Transmit(&husart1,(uint8_t*)&c,1,1000);
 }
-void unittest_uart_flush(void)
+void unityOutputFlush(void)
 {
 }
-void unittest_uart_end(void)
+void unityOutputComplete(void)
 {
     HAL_USART_DeInit(&husart1);
 }
